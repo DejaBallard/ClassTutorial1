@@ -18,22 +18,26 @@ namespace Version_1_C
             InitializeComponent();
         }
 
-        private clsArtistList theArtistList = new clsArtistList();
-        private const string fileName = "gallery.xml";
+        private clsArtistList _ArtistList = new clsArtistList();
+        /// <summary>
+        /// Removed in Lab one, Step 5.
+        /// Moved to clsWorksList
+        /// </summary>
+        //private const string _FileName = "gallery.xml";
 
         private void UpdateDisplay()
         {
-            string[] lcDisplayList = new string[theArtistList.Count];
+            string[] lcDisplayList = new string[_ArtistList.Count];
 
             lstArtists.DataSource = null;
-            theArtistList.Keys.CopyTo(lcDisplayList, 0);
+            _ArtistList.Keys.CopyTo(lcDisplayList, 0);
             lstArtists.DataSource = lcDisplayList;
-            lblValue.Text = Convert.ToString(theArtistList.GetTotalValue());
+            lblValue.Text = Convert.ToString(_ArtistList.GetTotalValue());
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            theArtistList.NewArtist();
+            _ArtistList.NewArtist();
             UpdateDisplay();
         }
 
@@ -44,7 +48,7 @@ namespace Version_1_C
             lcKey = Convert.ToString(lstArtists.SelectedItem);
             if (lcKey != null)
             {
-                theArtistList.EditArtist(lcKey);
+                _ArtistList.EditArtist(lcKey);
                 UpdateDisplay();
             }
         }
@@ -63,7 +67,7 @@ namespace Version_1_C
             if (lcKey != null)
             {
                 lstArtists.ClearSelected();
-                theArtistList.Remove(lcKey);
+                _ArtistList.Remove(lcKey);
                 UpdateDisplay();
             }
         }
@@ -72,11 +76,11 @@ namespace Version_1_C
         {
             try
             {
-                System.IO.FileStream lcFileStream = new System.IO.FileStream(fileName, System.IO.FileMode.Create);
+                System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Create);
                 System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
                     new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
 
-                lcFormatter.Serialize(lcFileStream, theArtistList);
+                lcFormatter.Serialize(lcFileStream, _ArtistList);
                 lcFileStream.Close();
             }
             catch (Exception e)
@@ -89,11 +93,11 @@ namespace Version_1_C
         {
             try
             {
-                System.IO.FileStream lcFileStream = new System.IO.FileStream(fileName, System.IO.FileMode.Open);
+                System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Open);
                 System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
                     new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
 
-                theArtistList = (clsArtistList)lcFormatter.Deserialize(lcFileStream);
+                _ArtistList = (clsArtistList)lcFormatter.Deserialize(lcFileStream);
                 UpdateDisplay();
                 lcFileStream.Close();
             }
