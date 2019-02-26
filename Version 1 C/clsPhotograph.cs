@@ -10,6 +10,9 @@ namespace Version_1_C
         private float _Height;
         private string _Type;
 
+        /// <summary>
+        /// Edit details of the photograph
+        /// </summary>
         public override void EditDetails()
         {
   

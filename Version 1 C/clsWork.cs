@@ -16,7 +16,11 @@ namespace Version_1_C
 
         public abstract void EditDetails();
 
-         public static clsWork NewWork()
+        /// <summary>
+        /// Dependent on user input, will open up a different inherited form
+        /// </summary>
+        /// <returns>returns the class of the users input, else null</returns>
+        public static clsWork NewWork()
          {
              char lcReply;
              InputBox inputBox = new InputBox("Enter P for Painting, S for Sculpture and H for Photograph");
@@ -41,21 +45,37 @@ namespace Version_1_C
              }
          }
 
+        /// <summary>
+        /// Overiding to string to display name and date
+        /// </summary>
+        /// <returns>name and date of artist's work</returns>
         public override string ToString()
         {
             return _Name + "\t" + _Date.ToShortDateString();  
         }
         
+        /// <summary>
+        /// Get the name of the artist's work
+        /// </summary>
+        /// <returns>Name of artist's work</returns>
         public string GetName()
         {
             return _Name;
         }
 
+        /// <summary>
+        /// Get the date of the artist's work
+        /// </summary>
+        /// <returns>date of artist's work</returns>
         public DateTime GetDate()
         {
             return _Date;
         }
 
+        /// <summary>
+        /// Get value of artist's work
+        /// </summary>
+        /// <returns>Value of artist's work</returns>
         public decimal GetValue()
         {
             return _Value;

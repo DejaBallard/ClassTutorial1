@@ -9,6 +9,9 @@ namespace Version_1_C
         private float _Weight;
         private string _Material;
 
+        /// <summary>
+        /// Edit details of the Sculpture
+        /// </summary>
         public override void EditDetails()
         {
  

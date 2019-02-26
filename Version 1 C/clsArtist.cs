@@ -4,29 +4,18 @@ namespace Version_1_C
     [Serializable()]
     public class clsArtist
     {
-        /// <summary>
-        /// The Artist's personal details
-        /// </summary>
+
         private string _Name;
         private string _Speciality;
         private string _Phone;
         
-        /// <summary>
-        /// Total value of the artist's work
-        /// </summary>
         private decimal _TotalValue;
 
-        /// <summary>
-        /// Work list of the artist
-        /// List of artists
-        /// </summary>
         private clsWorksList _WorksList;
         private clsArtistList _ArtistList;
         
-        /// <summary>
-        /// UI of Artist
-        /// </summary>
         private static frmArtist _FrmArtistDialog = new frmArtist();
+
 
         /// <summary>
         /// 
@@ -39,6 +28,9 @@ namespace Version_1_C
             EditDetails();
         }
         
+        /// <summary>
+        /// Open up the edit Dialog, if completed correctly, update artist's details
+        /// </summary>
         public void EditDetails()
         {
             _FrmArtistDialog.SetDetails(_Name, _Speciality, _Phone, _WorksList, _ArtistList);
@@ -49,11 +41,19 @@ namespace Version_1_C
             }
         }
 
+        /// <summary>
+        /// Get the artists name
+        /// </summary>
+        /// <returns>Artists name</returns>
         public string GetKey()
         {
             return _Name;
         }
 
+        /// <summary>
+        /// Get the price value of the artist's work
+        /// </summary>
+        /// <returns>Total value of the artist's work</returns>
         public decimal GetWorksValue()
         {
             return _TotalValue;

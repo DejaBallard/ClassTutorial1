@@ -12,6 +12,10 @@ namespace Version_1_C
     {
         private string answer;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="question"></param>
         public InputBox(string question)
         {
             InitializeComponent();

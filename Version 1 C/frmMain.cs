@@ -12,17 +12,26 @@ namespace Version_1_C
     {
         private clsArtistList _ArtistList;
 
+
         public frmMain()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// On Load, try retrieve local data file and update display 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
             _ArtistList = clsArtistList.Retrieve();
             UpdateDisplay();
         }
 
+        /// <summary>
+        /// empty the display then update with new data
+        /// </summary>
         private void UpdateDisplay()
         {
             string[] lcDisplayList = new string[_ArtistList.Count];
@@ -33,12 +42,22 @@ namespace Version_1_C
             lblValue.Text = Convert.ToString(_ArtistList.GetTotalValue());
         }
 
+        /// <summary>
+        /// Button to add a new artist, update display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             _ArtistList.NewArtist();
             UpdateDisplay();
         }
 
+        /// <summary>
+        /// Edit artist that has been double selected from list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstArtists_DoubleClick(object sender, EventArgs e)
         {
             string lcKey;
@@ -51,12 +70,22 @@ namespace Version_1_C
             }
         }
 
+        /// <summary>
+        /// Button to close application, save before closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnQuit_Click(object sender, EventArgs e)
         {
            _ArtistList.Save();
             Close();
         }
 
+        /// <summary>
+        /// Button to delete selected artist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string lcKey;
