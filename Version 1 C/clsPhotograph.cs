@@ -28,4 +28,5 @@ namespace Version_1_C
                 _PhotographDialog.GetDetails(ref _Name, ref _Date, ref _Value, ref _Width, ref _Height, ref _Type);
             }
         }
+    }
 }

@@ -16,7 +16,33 @@ namespace Version_1_C
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// save the data
+        /// </summary>
+        /// <param name="prName">Name of painting</param>
+        /// <param name="prDate">Date of Painting</param>
+        /// <param name="prValue">Value of Painting</param>
+        public virtual void SetDetails(string prName, DateTime prDate, decimal prValue,
+                                       float prWeight, float prMaterial)
+        {
+            base.SetDetails(prName, prDate, prValue);
+            txtWeight.Text = Convert.ToString(prWeight);
+            txtMaterial.Text = Convert.ToString(prMaterial);
+        }
 
+        /// <summary>
+        /// Get the data
+        /// </summary>
+        /// <param name="prName">Name of painting</param>
+        /// <param name="prDate">Date of Painting</param>
+        /// <param name="prValue">Value of Painting</param>
+        public virtual void GetDetails(ref string prName, ref DateTime prDate, ref decimal prValue,
+                                       ref float prWeight, ref float prMaterial)
+        {
+            base.GetDetails(ref prName, ref prDate, ref prValue);
+            prWeight = Convert.ToSingle(txtWeight.Text);
+            prMaterial = Convert.ToSingle(txtMaterial.Text);
+        }
     }
 }
 
