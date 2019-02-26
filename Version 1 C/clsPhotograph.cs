@@ -10,12 +10,22 @@ namespace Version_1_C
         private float _Height;
         private string _Type;
 
+        [NonSerialized()]
+        private static frmPhotograph _PhotographDialog;
+
         /// <summary>
-        /// Edit details of the photograph
+        /// Edit the details of the painting
         /// </summary>
         public override void EditDetails()
         {
-  
+            if (_PhotographDialog == null)
+            {
+                _PhotographDialog = new frmPhotograph();
+            }
+            _PhotographDialog.SetDetails(_Name, _Date, _Value, _Width, _Height, _Type);
+            if (_PhotographDialog.ShowDialog() == DialogResult.OK)
+            {
+                _PhotographDialog.GetDetails(ref _Name, ref _Date, ref _Value, ref _Width, ref _Height, ref _Type);
+            }
         }
-    }
 }

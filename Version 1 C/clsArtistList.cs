@@ -31,9 +31,9 @@ namespace Version_1_C
             clsArtist lcArtist = new clsArtist(this);
             try
             {
-                if (lcArtist.GetKey() != "")
+                if (lcArtist.Name != "")
                 {
-                    Add(lcArtist.GetKey(), lcArtist);
+                    Add(lcArtist.Name, lcArtist);
                     MessageBox.Show("Artist added!");
                 }
             }
@@ -52,7 +52,7 @@ namespace Version_1_C
             decimal lcTotal = 0;
             foreach (clsArtist lcArtist in Values)
             {
-                lcTotal += lcArtist.GetWorksValue();
+                lcTotal += lcArtist.TotalValue;
             }
             return lcTotal;
         }

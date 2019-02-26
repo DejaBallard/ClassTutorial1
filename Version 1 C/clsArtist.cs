@@ -8,13 +8,17 @@ namespace Version_1_C
         private string _Name;
         private string _Speciality;
         private string _Phone;
-        
         private decimal _TotalValue;
-
         private clsWorksList _WorksList;
         private clsArtistList _ArtistList;
-        
         private static frmArtist _FrmArtistDialog = new frmArtist();
+
+        public string Name { get => _Name; set => _Name = value; }
+        public string Speciality { get => _Speciality; set => _Speciality = value; }
+        public string Phone { get => _Phone; set => _Phone = value; }
+        public decimal TotalValue { get => _TotalValue; }
+        public clsWorksList WorksList { get => _WorksList; }
+        public clsArtistList ArtistList { get => _ArtistList; }
 
 
         /// <summary>
@@ -33,30 +37,11 @@ namespace Version_1_C
         /// </summary>
         public void EditDetails()
         {
-            _FrmArtistDialog.SetDetails(_Name, _Speciality, _Phone, _WorksList, _ArtistList);
-            if (_FrmArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                _FrmArtistDialog.GetDetails(ref _Name, ref _Speciality, ref _Phone);
-                _TotalValue = _WorksList.GetTotalValue();
-            }
-        }
-
-        /// <summary>
-        /// Get the artists name
-        /// </summary>
-        /// <returns>Artists name</returns>
-        public string GetKey()
-        {
-            return _Name;
-        }
-
-        /// <summary>
-        /// Get the price value of the artist's work
-        /// </summary>
-        /// <returns>Total value of the artist's work</returns>
-        public decimal GetWorksValue()
-        {
-            return _TotalValue;
+            _FrmArtistDialog.SetDetails(this);
+            //if (_FrmArtistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //{
+                _TotalValue = WorksList.GetTotalValue();
+           // }
         }
     }
 }

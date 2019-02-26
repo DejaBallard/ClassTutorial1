@@ -1,9 +1,5 @@
 using System;
 //using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Version_1_C
@@ -13,6 +9,7 @@ namespace Version_1_C
         private clsArtistList _ArtistList;
         private clsWorksList _WorksList;
         private byte _SortOrder; // 0 = Name, 1 = Date
+        private clsArtist _Artist;
 
         public frmArtist()
         {
@@ -41,38 +38,13 @@ namespace Version_1_C
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
         }
 
-        /// <summary>
-        /// Sets all the details of the artist then updates display
-        /// </summary>
-        /// <param name="prName">Name of the artist</param>
-        /// <param name="prSpeciality">What they specialise in</param>
-        /// <param name="prPhone">Contact details</param>
-        /// <param name="prWorksList">List of the artists work</param>
-        /// <param name="prArtistList">list of the artists</param>
-        public void SetDetails(string prName, string prSpeciality, string prPhone,
-                               clsWorksList prWorksList, clsArtistList prArtistList)
+      
+        public void SetDetails(clsArtist prArtist)
         {
-            txtName.Text = prName;
-            txtSpeciality.Text = prSpeciality;
-            txtPhone.Text = prPhone;
-            _ArtistList = prArtistList;
-            _WorksList = prWorksList;
-            _SortOrder = _WorksList.SortOrder;
+            _Artist = prArtist;
+            updateForm();
             UpdateDisplay();
-        }
-
-        /// <summary>
-        /// Gets the current artists details and displays on form
-        /// </summary>
-        /// <param name="prName">Name of artist</param>
-        /// <param name="prSpeciality">What they specialise in</param>
-        /// <param name="prPhone">Contact Details</param>
-        public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone)
-        {
-            prName = txtName.Text;
-            prSpeciality = txtSpeciality.Text;
-            prPhone = txtPhone.Text;
-            _WorksList.SortOrder = _SortOrder;
+            ShowDialog();
         }
 
         /// <summary>
@@ -107,6 +79,7 @@ namespace Version_1_C
         {
             if (isValid())
             {
+                pushData();
                 DialogResult = DialogResult.OK;
             }
         }
@@ -155,5 +128,23 @@ namespace Version_1_C
             UpdateDisplay();
         }
 
+        private void updateForm()
+        {
+            txtName.Text = _Artist.Name;
+            txtPhone.Text = _Artist.Phone;
+            txtSpeciality.Text = _Artist.Speciality;
+            _ArtistList = _Artist.ArtistList;
+            _WorksList = _Artist.WorksList;
+            _SortOrder = _WorksList.SortOrder;
+        }
+        private void pushData()
+        {
+            _Artist.Name = txtName.Text;
+            _Artist.Phone = txtPhone.Text;
+            _Artist.Speciality = txtSpeciality.Text;
+            _ArtistList = _Artist.ArtistList;
+            _WorksList = _Artist.WorksList;
+            _WorksList.SortOrder = _SortOrder;
+        }
     }
 }
