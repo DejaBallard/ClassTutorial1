@@ -9,8 +9,13 @@ namespace Version_1_C
     {
         private static clsNameComparer _NameComparer = new clsNameComparer();
         private static clsDateComparer _DateComparer = new clsDateComparer();
-        private const string _FileName = "gallery.xml";
 
+        /// <summary>
+        /// Sorting
+        /// </summary>
+        private byte _SortOrder;
+
+        public byte SortOrder { get => _SortOrder; set => _SortOrder = value; }
 
         public void AddWork()
         {
@@ -63,23 +68,6 @@ namespace Version_1_C
         public void SortByDate()
         {
             Sort(_DateComparer);
-        }
-
-        public void Save()
-        {
-            try
-            {
-                System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Create);
-                System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
-                    new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
-
-                lcFormatter.Serialize(lcFileStream, this);
-                lcFileStream.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "File Save Error");
-            }
         }
     }
 }
