@@ -6,7 +6,6 @@ namespace Version_1_C
 {
     public partial class frmArtist : Form
     {
-        private clsArtistList _ArtistList;
         private clsWorksList _WorksList;
         private byte _SortOrder; // 0 = Name, 1 = Date
         private clsArtist _Artist;
@@ -91,7 +90,7 @@ namespace Version_1_C
         public virtual Boolean isValid()
         {
             if (txtName.Enabled && txtName.Text != "")
-                if (_ArtistList.Contains(txtName.Text))
+                if (_Artist.IsDuplicate(txtName.Text))
                 {
                     MessageBox.Show("Artist with that name already exists!");
                     return false;
@@ -133,7 +132,6 @@ namespace Version_1_C
             txtName.Text = _Artist.Name;
             txtPhone.Text = _Artist.Phone;
             txtSpeciality.Text = _Artist.Speciality;
-            _ArtistList = _Artist.ArtistList;
             _WorksList = _Artist.WorksList;
             _SortOrder = _WorksList.SortOrder;
         }
@@ -142,7 +140,6 @@ namespace Version_1_C
             _Artist.Name = txtName.Text;
             _Artist.Phone = txtPhone.Text;
             _Artist.Speciality = txtSpeciality.Text;
-            _ArtistList = _Artist.ArtistList;
             _WorksList = _Artist.WorksList;
             _WorksList.SortOrder = _SortOrder;
         }

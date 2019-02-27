@@ -13,6 +13,10 @@ namespace Version_1_C
         [NonSerialized()]
         private static frmPhotograph _PhotographDialog;
 
+        public float Width { get => _Width; set => _Width = value; }
+        public float Height { get => _Height; set => _Height = value; }
+        public string Type { get => _Type; set => _Type = value; }
+
         /// <summary>
         /// Edit the details of the painting
         /// </summary>
@@ -22,11 +26,7 @@ namespace Version_1_C
             {
                 _PhotographDialog = new frmPhotograph();
             }
-            _PhotographDialog.SetDetails(_Name, _Date, _Value, _Width, _Height, _Type);
-            if (_PhotographDialog.ShowDialog() == DialogResult.OK)
-            {
-                _PhotographDialog.GetDetails(ref _Name, ref _Date, ref _Value, ref _Width, ref _Height, ref _Type);
-            }
+            _PhotographDialog.SetDetails(this);
         }
     }
 }

@@ -16,32 +16,21 @@ namespace Version_1_C
         {
             InitializeComponent();
         }
-        /// <summary>
-        /// save the data
-        /// </summary>
-        /// <param name="prName">Name of painting</param>
-        /// <param name="prDate">Date of Painting</param>
-        /// <param name="prValue">Value of Painting</param>
-        public virtual void SetDetails(string prName, DateTime prDate, decimal prValue,
-                                       float prWeight, float prMaterial)
+
+        protected override void updateForm()
         {
-            base.SetDetails(prName, prDate, prValue);
-            txtWeight.Text = Convert.ToString(prWeight);
-            txtMaterial.Text = Convert.ToString(prMaterial);
+            base.updateForm();
+            clsSculpture lcWork = (clsSculpture)_Work;
+            txtWeight.Text = lcWork.Weight.ToString();
+            txtMaterial.Text = lcWork.Material.ToString();
         }
 
-        /// <summary>
-        /// Get the data
-        /// </summary>
-        /// <param name="prName">Name of painting</param>
-        /// <param name="prDate">Date of Painting</param>
-        /// <param name="prValue">Value of Painting</param>
-        public virtual void GetDetails(ref string prName, ref DateTime prDate, ref decimal prValue,
-                                       ref float prWeight, ref float prMaterial)
+        protected override void pushData()
         {
-            base.GetDetails(ref prName, ref prDate, ref prValue);
-            prWeight = Convert.ToSingle(txtWeight.Text);
-            prMaterial = Convert.ToSingle(txtMaterial.Text);
+            base.pushData();
+            clsSculpture lcWork = (clsSculpture)_Work;
+            lcWork.Weight = Convert.ToSingle(txtWeight.Text);
+            lcWork.Material = txtMaterial.Text;
         }
     }
 }

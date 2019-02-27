@@ -10,6 +10,7 @@ namespace Version_1_C
 {
     public partial class frmWork : Form
     {
+        protected clsWork _Work;
 
         public frmWork()
         {
@@ -22,24 +23,11 @@ namespace Version_1_C
         /// <param name="prName">Name of work</param>
         /// <param name="prDate">Date of Work</param>
         /// <param name="prValue">Value of Work</param>
-        public void SetDetails(string prName, DateTime prDate, decimal prValue)
+        public void SetDetails(clsWork prWork)
         {
-            txtName.Text = prName;
-            txtCreation.Text = prDate.ToShortDateString();
-            txtValue.Text = Convert.ToString(prValue);
-        }
-
-        /// <summary>
-        /// Get the data
-        /// </summary>
-        /// <param name="prName">Name of work</param>
-        /// <param name="prDate">Date of Work</param>
-        /// <param name="prValue">Value of Work</param>
-        public void GetDetails(ref string prName, ref DateTime prDate, ref decimal prValue)
-        {
-            prName = txtName.Text;
-            prDate = Convert.ToDateTime(txtCreation.Text);
-            prValue = Convert.ToDecimal(txtValue.Text);
+            _Work = prWork;
+            updateForm();
+            ShowDialog();
         }
 
         /// <summary>
@@ -51,7 +39,7 @@ namespace Version_1_C
         {
             if (isValid() == true)
             {
-                DialogResult = DialogResult.OK;
+                pushData();
                 Close();
             }
         }
@@ -76,5 +64,18 @@ namespace Version_1_C
             return true;
         }
     
+        protected virtual void updateForm()
+        {
+            txtName.Text = _Work.Name;
+            txtCreation.Text = _Work.Date.ToLongDateString();
+            txtValue.Text = _Work.Value.ToString();
+        }
+
+        protected virtual void pushData()
+        {
+            _Work.Name = txtName.Text;
+            _Work.Date = DateTime.Parse(txtCreation.Text);
+            _Work.Value = decimal.Parse(txtValue.Text);
+        }
     }
 }

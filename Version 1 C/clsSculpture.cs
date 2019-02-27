@@ -11,6 +11,10 @@ namespace Version_1_C
 
         [NonSerialized()]
         private static frmSculpture _SculptureDialog;
+
+        public float Weight { get => _Weight; set => _Weight = value; }
+        public string Material { get => _Material; set => _Material = value; }
+
         /// <summary>
         /// Edit details of the Sculpture
         /// </summary>
@@ -20,11 +24,7 @@ namespace Version_1_C
             {
                 _SculptureDialog = new frmSculpture();
             }
-            _SculptureDialog.SetDetails(_Name, _Date, _Value, _Weight, _Material);
-            if (_SculptureDialog.ShowDialog() == DialogResult.OK)
-            {
-                _SculptureDialog.GetDetails(ref _Name, ref _Date, ref _Value, ref _Weight, ref _Material);
-            }
+            _SculptureDialog.SetDetails(this);
         }
     }
 }

@@ -43,5 +43,10 @@ namespace Version_1_C
                 _TotalValue = WorksList.GetTotalValue();
            // }
         }
+
+        public bool IsDuplicate(string prArtistName)
+        {
+            return _ArtistList.ContainsKey(prArtistName);
+        }
     }
 }
