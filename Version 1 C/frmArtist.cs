@@ -53,7 +53,13 @@ namespace Version_1_C
         /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            _WorksList.DeleteWork(lstWorks.SelectedIndex);
+            if (lstWorks.SelectedIndex >= 0 && lstWorks.SelectedIndex < _WorksList.Count)
+            {
+                if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    _WorksList.DeleteWork(lstWorks.SelectedIndex);
+                }
+            }
             UpdateDisplay();
         }
 
@@ -111,7 +117,14 @@ namespace Version_1_C
             int lcIndex = lstWorks.SelectedIndex;
             if (lcIndex >= 0)
             {
-                _WorksList.EditWork(lcIndex);
+                try
+                {
+                    _WorksList.EditWork(lcIndex);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 UpdateDisplay();
             }
         }

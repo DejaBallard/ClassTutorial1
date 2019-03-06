@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Version_1_C
 {
@@ -20,13 +19,14 @@ namespace Version_1_C
             if (lcArtist != null)
                 lcArtist.EditDetails();
             else
-                MessageBox.Show("Sorry no artist by this name");
+                //MessageBox.Show("Sorry no artist by this name");
+                throw new Exception("Sorry no artist by this name");
         }
        
         /// <summary>
         /// Create a new artist
         /// </summary>
-        public void NewArtist()
+        public bool NewArtist()
         {
             clsArtist lcArtist = new clsArtist(this);
             try
@@ -34,13 +34,15 @@ namespace Version_1_C
                 if (lcArtist.Name != "")
                 {
                     Add(lcArtist.Name, lcArtist);
-                    MessageBox.Show("Artist added!");
+                    return true;
+                    //MessageBox.Show("Artist added!");
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Duplicate Key!");
+                return false;
             }
+            return false;
         }
         
         /// <summary>
@@ -65,15 +67,15 @@ namespace Version_1_C
             try
             {
                 System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Create);
-                System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
-                    new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter lcFormatter =
+                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
                 lcFormatter.Serialize(lcFileStream, this);
                 lcFileStream.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message, "File Save Error");
+                throw new Exception(ex.Message);
             }
         }
 
@@ -88,17 +90,16 @@ namespace Version_1_C
             try
             {
                 System.IO.FileStream lcFileStream = new System.IO.FileStream(_FileName, System.IO.FileMode.Open);
-                System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
-                    new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter lcFormatter =
+                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
                 lcArtistList = (clsArtistList)lcFormatter.Deserialize(lcFileStream);
                 lcFileStream.Close();
             }
 
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.Message, "File Retrieve Error");
-                lcArtistList = new clsArtistList();
+                throw new Exception(ex.Message);
             }
             return lcArtistList;
         }

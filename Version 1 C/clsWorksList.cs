@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Version_1_C
 {
@@ -34,13 +33,7 @@ namespace Version_1_C
         /// <param name="prIndex">index number of the selected work</param>
         public void DeleteWork(int prIndex)
         {
-            if (prIndex >= 0 && prIndex < this.Count)
-            {
-                if (MessageBox.Show("Are you sure?", "Deleting work", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
                     this.RemoveAt(prIndex);
-                }
-            }
         }
         
         /// <summary>
@@ -56,7 +49,7 @@ namespace Version_1_C
             }
             else
             {
-                MessageBox.Show("Sorry no work selected #" + Convert.ToString(prIndex));
+                throw new Exception("Sorry no work selected #" + Convert.ToString(prIndex));
             }
         }
 

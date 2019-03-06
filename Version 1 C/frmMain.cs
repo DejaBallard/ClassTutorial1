@@ -25,7 +25,14 @@ namespace Version_1_C
         /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
-            _ArtistList = clsArtistList.Retrieve();
+            try
+            {
+                _ArtistList = clsArtistList.Retrieve();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                _ArtistList = new clsArtistList();
+            }
             UpdateDisplay();
         }
 
@@ -49,8 +56,16 @@ namespace Version_1_C
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _ArtistList.NewArtist();
+           if( _ArtistList.NewArtist() == true)
+            {
+                MessageBox.Show("Artist added");
+            }
+            else
+            {
+                MessageBox.Show("That name already exits");
+            }
             UpdateDisplay();
+
         }
 
         /// <summary>
@@ -65,9 +80,15 @@ namespace Version_1_C
             lcKey = Convert.ToString(lstArtists.SelectedItem);
             if (lcKey != null)
             {
-                _ArtistList.EditArtist(lcKey);
-                UpdateDisplay();
-            }
+                try {
+                    _ArtistList.EditArtist(lcKey);
+                    UpdateDisplay();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                }
         }
 
         /// <summary>
@@ -77,7 +98,13 @@ namespace Version_1_C
         /// <param name="e"></param>
         private void btnQuit_Click(object sender, EventArgs e)
         {
-           _ArtistList.Save();
+            try
+            {
+                _ArtistList.Save();
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             Close();
         }
 
