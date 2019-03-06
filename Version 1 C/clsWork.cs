@@ -24,29 +24,16 @@ namespace Version_1_C
         /// Dependent on user input, will open up a different inherited form
         /// </summary>
         /// <returns>returns the class of the users input, else null</returns>
-        public static clsWork NewWork()
+        public static clsWork NewWork(int prAnswer)
          {
-             char lcReply;
-             InputBox inputBox = new InputBox("Enter P for Painting, S for Sculpture and H for Photograph");
-             //inputBox.ShowDialog();
-             //if (inputBox.getAction() == true)
-             if (inputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-             {
-                 lcReply = Convert.ToChar(inputBox.getAnswer());
 
-                 switch (char.ToUpper(lcReply))
+                 switch (prAnswer)
                  {
-                     case 'P': return new clsPainting();
-                     case 'S': return new clsSculpture();
-                     case 'H': return new clsPhotograph();
+                     case 0: return new clsPainting();
+                     case 1: return new clsSculpture();
+                     case 2: return new clsPhotograph();
                      default: return null;
                  }
-             }
-             else
-             {
-                 inputBox.Close();
-                 return null;
-             }
          }
 
         /// <summary>

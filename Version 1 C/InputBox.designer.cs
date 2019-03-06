@@ -31,8 +31,8 @@ namespace Version_1_C
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblQuestion = new System.Windows.Forms.Label();
-            this.txtAnswer = new System.Windows.Forms.TextBox();
             this.lblError = new System.Windows.Forms.Label();
+            this.cbxAnswer = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnOK
@@ -64,13 +64,6 @@ namespace Version_1_C
             this.lblQuestion.TabIndex = 2;
             this.lblQuestion.Text = "lblQuestion";
             // 
-            // txtAnswer
-            // 
-            this.txtAnswer.Location = new System.Drawing.Point(19, 43);
-            this.txtAnswer.Name = "txtAnswer";
-            this.txtAnswer.Size = new System.Drawing.Size(328, 20);
-            this.txtAnswer.TabIndex = 1;
-            // 
             // lblError
             // 
             this.lblError.AutoSize = true;
@@ -80,14 +73,22 @@ namespace Version_1_C
             this.lblError.TabIndex = 4;
             this.lblError.Text = "lblError";
             // 
+            // cbxAnswer
+            // 
+            this.cbxAnswer.FormattingEnabled = true;
+            this.cbxAnswer.Location = new System.Drawing.Point(19, 29);
+            this.cbxAnswer.Name = "cbxAnswer";
+            this.cbxAnswer.Size = new System.Drawing.Size(328, 21);
+            this.cbxAnswer.TabIndex = 12;
+            // 
             // InputBox
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 128);
+            this.Controls.Add(this.cbxAnswer);
             this.Controls.Add(this.lblError);
-            this.Controls.Add(this.txtAnswer);
             this.Controls.Add(this.lblQuestion);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -103,7 +104,7 @@ namespace Version_1_C
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblQuestion;
-        private System.Windows.Forms.TextBox txtAnswer;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.ComboBox cbxAnswer;
     }
 }

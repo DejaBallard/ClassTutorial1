@@ -18,9 +18,9 @@ namespace Version_1_C
         /// <summary>
         /// Adding new work to the list
         /// </summary>
-        public void AddWork()
+        public void AddWork(int prAnswer)
         {
-            clsWork lcWork = clsWork.NewWork();
+            clsWork lcWork = clsWork.NewWork(prAnswer);
             if (lcWork != null)
             {
                 Add(lcWork);

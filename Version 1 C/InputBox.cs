@@ -10,7 +10,7 @@ namespace Version_1_C
 {
     public partial class InputBox : Form
     {
-        private string answer;
+        private int answer;
 
         /// <summary>
         /// 
@@ -21,21 +21,18 @@ namespace Version_1_C
             InitializeComponent();
             lblQuestion.Text = question;
             lblError.Text = "";
-            txtAnswer.Focus();
+            cbxAnswer.Items.Add("Painting");
+            cbxAnswer.Items.Add("Sculpture");
+            cbxAnswer.Items.Add("Photograph");
+            cbxAnswer.SelectedIndex = 0;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtAnswer.Text.Length > 0 && txtAnswer.Text.Length < 2)
-            {
-                answer = txtAnswer.Text;
+                answer = cbxAnswer.SelectedIndex;
                 DialogResult = DialogResult.OK;
                 this.Close();
-            }
-            else
-            {
-                lblError.Text = "Please enter one character into the text box.";
-            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -44,7 +41,7 @@ namespace Version_1_C
             Close();
         }
 
-        public string getAnswer()
+        public int getAnswer()
         {
             return answer;
         }

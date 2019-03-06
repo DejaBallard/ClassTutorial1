@@ -70,7 +70,14 @@ namespace Version_1_C
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _WorksList.AddWork();
+            int lcAnswer;
+
+            InputBox inputBox = new InputBox("Please select a work type from the drop box");
+            if (inputBox.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                lcAnswer = (int)Convert.ToSingle(inputBox.getAnswer());
+                _WorksList.AddWork(lcAnswer);
+            }
             UpdateDisplay();
         }
 
