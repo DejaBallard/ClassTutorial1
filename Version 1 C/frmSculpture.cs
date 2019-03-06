@@ -22,7 +22,7 @@ namespace Version_1_C
             base.updateForm();
             clsSculpture lcWork = (clsSculpture)_Work;
             txtWeight.Text = lcWork.Weight.ToString();
-            txtMaterial.Text = lcWork.Material.ToString();
+            txtMaterial.Text = lcWork.Material;
         }
 
         protected override void pushData()
