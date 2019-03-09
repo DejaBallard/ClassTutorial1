@@ -3,8 +3,8 @@ By:         Deja Ballard
 
 Finislised: 09/03/2019
 
-Software:   Visual Studio 2017
-            Visual Paradigm 15
+Software:   Visual Studio 2017,
+            Visual Paradigm 15,
             Visual Paradigm - Visual Studio IDE Intergration
             
 language:   C#
