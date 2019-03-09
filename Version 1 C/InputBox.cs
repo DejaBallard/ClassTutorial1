@@ -10,16 +10,16 @@ namespace Version_1_C
 {
     public partial class InputBox : Form
     {
-        private int answer;
+        private int _Answer;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="question"></param>
-        public InputBox(string question)
+        /// <param name="prQuestion"></param>
+        public InputBox(string prQuestion)
         {
             InitializeComponent();
-            lblQuestion.Text = question;
+            lblQuestion.Text = prQuestion;
             lblError.Text = "";
             cbxAnswer.Items.Add("Painting");
             cbxAnswer.Items.Add("Sculpture");
@@ -30,7 +30,7 @@ namespace Version_1_C
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-                answer = cbxAnswer.SelectedIndex;
+                _Answer = cbxAnswer.SelectedIndex;
                 DialogResult = DialogResult.OK;
                 this.Close();
         }
@@ -43,7 +43,7 @@ namespace Version_1_C
 
         public int getAnswer()
         {
-            return answer;
+            return _Answer;
         }
     }
 }
